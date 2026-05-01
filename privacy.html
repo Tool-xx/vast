@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Политика конфиденциальности — Vast VPN</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #0a0c10;
+      color: #e0e4f0;
+      line-height: 1.6;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 20px;
+    }
+    #particle-canvas {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      z-index: 0; pointer-events: none;
+      opacity: 0.3;
+    }
+    .doc-container {
+      position: relative;
+      z-index: 2;
+      max-width: 800px;
+      width: 100%;
+      background: rgba(18, 22, 30, 0.75);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      border: 1px solid rgba(100, 140, 255, 0.2);
+      border-radius: 30px;
+      padding: 40px;
+      box-shadow: 0 25px 50px rgba(0,0,0,0.6);
+    }
+    h1 {
+      font-size: 2.2rem;
+      margin-bottom: 25px;
+      background: linear-gradient(135deg, #b3d4ff, #c084fc);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .content {
+      white-space: pre-line;
+      font-size: 0.95rem;
+      color: #cbd5f0;
+      line-height: 1.8;
+    }
+    .content strong {
+      display: block;
+      margin-top: 25px;
+      margin-bottom: 8px;
+      color: #fff;
+      font-size: 1.1rem;
+    }
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 30px;
+      color: #7f9aff;
+      text-decoration: none;
+      font-weight: 500;
+      transition: 0.2s;
+    }
+    .back-link:hover { color: #b3cbff; }
+  </style>
+</head>
+<body>
+  <canvas id="particle-canvas"></canvas>
+  <div class="doc-container">
+    <a href="index.html" class="back-link"><i class="fas fa-arrow-left"></i> Назад на сайт</a>
+    <h1>🔐 Политика конфиденциальности — Vast VPN</h1>
+    <div class="content">
+      <strong>Общие положения</strong>
+      1.1. Настоящая Политика регулирует обработку данных при использовании Vast VPN (далее — «Сервис»).
+      1.2. Используя Сервис, Пользователь соглашается с Политикой.
+
+      <strong>Сбор данных</strong>
+      2.1. Сервис может собирать:
+      — идентификаторы аккаунта (например, Telegram ID, email);
+      — технические данные (IP-адрес, устройство, браузер);
+      — информацию о взаимодействии с Сервисом (подписки, платежи, обращения).
+      2.2. Сервис не требует избыточных персональных данных.
+
+      <strong>Использование данных</strong>
+      3.1. Данные используются для:
+      — предоставления доступа;
+      — поддержки;
+      — безопасности;
+      — улучшения Сервиса.
+
+      <strong>Передача третьим лицам</strong>
+      4.1. Данные не продаются.
+      4.2. Передача возможна:
+      — платёжным системам;
+      — техническим подрядчикам;
+      — по требованию закона;
+      — с согласия Пользователя.
+
+      <strong>Cookies</strong>
+      5.1. Сервис может использовать cookie для работы сайта и аналитики.
+      5.2. Пользователь может отключить их в браузере.
+
+      <strong>Хранение и защита</strong>
+      6.1. Данные хранятся в течение срока использования Сервиса и разумного периода после.
+      6.2. Применяются меры защиты, но абсолютная безопасность не гарантируется.
+
+      <strong>Права пользователя</strong>
+      7.1. Пользователь может:
+      — запросить данные;
+      — изменить или удалить их;
+      — отозвать согласие.
+
+      <strong>Изменения</strong>
+      8.1. Политика может обновляться.
+      8.2. Продолжение использования означает согласие.
+
+      Последнее обновление: 26 февраля 2025 г.
+    </div>
+  </div>
+  <script>
+    (function() {
+      const canvas = document.getElementById('particle-canvas');
+      const ctx = canvas.getContext('2d');
+      let particles = [];
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+      window.addEventListener('resize', () => {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+      });
+      class Particle {
+        constructor() { this.reset(); }
+        reset() {
+          this.x = Math.random() * canvas.width;
+          this.y = Math.random() * canvas.height;
+          this.size = Math.random() * 1.8 + 0.4;
+          this.speedX = (Math.random() - 0.5) * 0.25;
+          this.speedY = (Math.random() - 0.5) * 0.25;
+          this.opacity = Math.random() * 0.5 + 0.15;
+        }
+        update() {
+          this.x += this.speedX;
+          this.y += this.speedY;
+          if (this.x < -10 || this.x > canvas.width + 10 || this.y < -10 || this.y > canvas.height + 10) {
+            this.reset();
+            this.x = Math.random() * canvas.width;
+            this.y = Math.random() * canvas.height;
+          }
+        }
+        draw() {
+          ctx.beginPath();
+          ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+          ctx.fillStyle = `rgba(120, 160, 255, ${this.opacity})`;
+          ctx.fill();
+        }
+      }
+      for (let i = 0; i < 60; i++) particles.push(new Particle());
+      function animate() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        particles.forEach(p => { p.update(); p.draw(); });
+        for (let i = 0; i < particles.length; i++) {
+          for (let j = i + 1; j < particles.length; j++) {
+            const dx = particles[i].x - particles[j].x;
+            const dy = particles[i].y - particles[j].y;
+            const dist = Math.sqrt(dx*dx+dy*dy);
+            if (dist < 130) {
+              ctx.beginPath();
+              ctx.moveTo(particles[i].x, particles[i].y);
+              ctx.lineTo(particles[j].x, particles[j].y);
+              ctx.strokeStyle = `rgba(90,140,255,${0.05 * (1 - dist/130)})`;
+              ctx.stroke();
+            }
+          }
+        }
+        requestAnimationFrame(animate);
+      }
+      animate();
+    })();
+  </script>
+</body>
+</html>
